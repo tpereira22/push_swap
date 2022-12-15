@@ -12,7 +12,7 @@
 
 NAME		= push_swap
 
-SRCS		= srcs/push_swap.c srcs/check_arg.c srcs/struct_utils.c srcs/push_swap_utils.c
+SRCS		= srcs/push_swap.c srcs/check_arg.c srcs/struct_utils.c srcs/push_swap_utils.c srcs/check_sort.c srcs/sort_stack.c
 
 OBJS		= $(SRCS:.c=.o)
 

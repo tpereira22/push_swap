@@ -13,6 +13,27 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
+int check_dup_num(t_stack *stack)
+{
+    t_stack *tmp;
+
+    while(stack)
+    {
+        //confirmar se intmax incluso ou nao
+        if (stack->nbr >= 2147483647 || stack->nbr <= -2147483647)
+            return (0);
+        tmp = stack->next;
+        while (tmp)
+        {
+            if (stack->nbr == tmp->nbr)
+                return (0);
+            tmp = tmp->next;
+        }
+        stack = stack->next;
+    }
+    return (1);
+}
+
 int	main(int ac, char **av)
 {
     t_stack *stack_a;
@@ -22,6 +43,15 @@ int	main(int ac, char **av)
     else
     {
         stack_a = check_args(ac, av);
+        if (!stack_a || !check_dup_num(stack_a))
+        {
+            ft_putstr_fd("Error\n", 1);
+            free_struct(&stack_a);
+            exit (1);
+        }
+        //checkar if sorted antes de ir para sort
+        if (!check_sort(stack_a))
+            sort_stack(stack_a);
         while (stack_a->next)
         {
             ft_putnbr_fd(stack_a->nbr, 1);

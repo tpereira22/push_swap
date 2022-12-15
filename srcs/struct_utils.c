@@ -13,6 +13,21 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
+void    free_struct(t_stack **stack)
+{
+    t_stack *tmp;
+
+    if(!stack)
+        return ;
+    while (*stack)
+    {
+        tmp = (*stack)->next;
+        (*stack)->nbr = 0;
+        free(*stack);
+        *stack = tmp;
+    }
+}
+
 t_stack *lst_last(t_stack *stack)
 {
 	while (stack)
