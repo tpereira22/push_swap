@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -37,12 +38,27 @@ void    add_back(t_stack **stack, t_stack *new);
 void	free_struct(t_stack **stack);
 
 //push_swap_utils.c
+int get_smallest(t_stack **stack, int *pos);
 
-//sort_small
-void    sort_stack(t_stack *stack);
-int sort_small(t_stack *stack);
+//sort_stack.c
+void    sort_stack(t_stack **stack);
+void	sort_small(t_stack **stack, int len);
+
+//sort_small.c
+void    sort_three(t_stack **stack);
+void    sort_four_five(t_stack **stack_a, int len);
+void    sort_four(t_stack **stack_a);
+void    sort_five(t_stack **stack_a);
 
 //check_sort.c
 int check_sort(t_stack *stack);
+
+//operations.c
+void    ft_sa(t_stack **stack);
+void	ft_ra(t_stack **stack);
+
+//operations2.c
+void    ft_rra(t_stack **stack);
+void    ft_pb(t_stack **stack_a, t_stack **stack_b);
 
 #endif

@@ -12,3 +12,26 @@
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
+
+int get_smallest(t_stack **stack, int *pos)
+{
+    t_stack *tmp;
+    int small;
+    int pos_i;
+
+    tmp = *stack;
+    pos_i = 0;
+    *pos = 0;
+    small = (*stack)->nbr;
+    while (tmp)
+    {
+        pos_i++;
+        if (tmp->nbr < small)
+        {
+            *pos = pos_i;
+            small = tmp->nbr;
+        }
+        tmp = tmp->next;
+    }
+    return (small);
+}

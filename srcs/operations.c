@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 20:04:47 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:04:48 by timartin         ###   ########.fr       */
+/*   Created: 2022/12/16 12:40:46 by timartin          #+#    #+#             */
+/*   Updated: 2022/12/16 12:40:49 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void    sort_small(t_stack **stack, int len)
+void    ft_sa(t_stack **stack)
 {
-    if (len == 2)
-        ft_sa(stack);
-    else if(len == 3)
-        sort_three(stack);
-    else if (len <= 5)
-        sort_four_five(stack, len);
+	t_stack	*tmp;
+	int	swap;
 
+	tmp = (*stack)->next;
+	swap = tmp->nbr;
+	tmp->nbr = (*stack)->nbr;
+	(*stack)->nbr = swap;
+	ft_putstr_fd("sa\n", 1);
 }
 
-void    sort_stack(t_stack **stack)
+void	ft_ra(t_stack **stack)
 {
-    t_stack *tmp;
-    int len;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
+	int	swap;
 
-    len = 0;
-    tmp = *stack;
-    while (tmp)
-    {
-        len++;
-        tmp = tmp->next;
-    }
-    if (len <= 6)
-        sort_small(stack, len);
-    // else
-    //     sort_small(stack, len);
+	tmp1 = *stack;
+	tmp2 = (*stack)->next;
+	while(tmp1->next)
+	{
+		swap = tmp2->nbr;
+		tmp2->nbr = tmp1->nbr;
+		tmp1->nbr = swap;
+		tmp2 = tmp2->next;
+		tmp1 = tmp1->next;
+	}
+	ft_putstr_fd("ra\n", 1);
 }

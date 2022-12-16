@@ -19,8 +19,7 @@ int check_dup_num(t_stack *stack)
 
     while(stack)
     {
-        //confirmar se intmax incluso ou nao
-        if (stack->nbr >= 2147483647 || stack->nbr <= -2147483647)
+        if (stack->nbr > 2147483647 || stack->nbr < -2147483647)
             return (0);
         tmp = stack->next;
         while (tmp)
@@ -51,7 +50,7 @@ int	main(int ac, char **av)
         }
         //checkar if sorted antes de ir para sort
         if (!check_sort(stack_a))
-            sort_stack(stack_a);
+            sort_stack(&stack_a);
         while (stack_a->next)
         {
             ft_putnbr_fd(stack_a->nbr, 1);
