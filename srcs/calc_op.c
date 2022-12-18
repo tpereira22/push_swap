@@ -1,37 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_sort.c                                       :+:      :+:    :+:   */
+/*   calc_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 20:04:47 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:04:48 by timartin         ###   ########.fr       */
+/*   Created: 2022/12/09 18:17:32 by timartin          #+#    #+#             */
+/*   Updated: 2022/12/09 18:17:54 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void    push_all_stack_a(t_stack **stack_a, t_stack **stack_b)
+void	ft_calc_ra(t_stack *stack)
 {
-    while ((*stack_b)->next)
-        ft_pa(stack_a, stack_b);
-    ft_pa(stack_a, stack_b);
+	t_stack	*tmp1;
+	t_stack	*tmp2;
+	int	swap;
+
+	tmp1 = stack;
+	tmp2 = stack->next;
+	while(tmp1->next)
+	{
+		swap = tmp2->nbr;
+		tmp2->nbr = tmp1->nbr;
+		tmp1->nbr = swap;
+		tmp2 = tmp2->next;
+		tmp1 = tmp1->next;
+	}
 }
 
-int check_sort(t_stack *stack)
-{  
-    int tmp;
+void    ft_calc_rra(t_stack *stack)
+{
+    t_stack *tmp;
+    int i;
 
-    tmp = stack->nbr;
-    stack = stack->next;
-    while (stack)
+    tmp = stack;
+    i = 0;
+    while (stack->next)
     {
-        if (tmp > stack->nbr)
-            return (0);
-        tmp = stack->nbr;
         stack = stack->next;
+        i++;
     }
-    return (1);
+    stack->next = tmp;
+    while (i > 1)
+    {
+        tmp = tmp->next;
+        i--;
+    }
+    tmp->next = NULL;
 }

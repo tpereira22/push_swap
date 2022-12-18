@@ -51,14 +51,19 @@ int	main(int ac, char **av)
         //checkar if sorted antes de ir para sort
         if (!check_sort(stack_a))
             sort_stack(&stack_a);
-        while (stack_a->next)
-        {
-            ft_putnbr_fd(stack_a->nbr, 1);
-            ft_putchar_fd(10, 1);
-            stack_a = stack_a->next;
-        }
-        ft_putnbr_fd(stack_a->nbr, 1);
-        ft_putchar_fd(10, 1);
-    }
 
+        // print_test stack_a
+        // if (stack_a)
+        // {
+        //     while (stack_a->next)
+        //     {
+        //         ft_putnbr_fd(stack_a->nbr, 1);
+        //         ft_putchar_fd(10, 1);
+        //         stack_a = stack_a->next;
+        //     }
+        //     ft_putnbr_fd(stack_a->nbr, 1);
+        //     ft_putchar_fd(10, 1);
+        // }
+        free_struct(&stack_a);
+    }
 }
