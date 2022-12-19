@@ -43,10 +43,15 @@ int get_closest_small(t_stack **stack, int nbr);
 t_stack *dup_list(t_stack **stack);
 int get_biggest(t_stack **stack);
 
+//push_swap_utils2.c
+int check_sort(t_stack *stack);
+void    push_all_stack_a(t_stack **stack_a, t_stack **stack_b);
+int	cut_calc(t_stack **stack_a, t_stack **stack_b, t_stack **tmp, int len);
+
 //sort_stack.c
 void    sort_stack(t_stack **stack_a);
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int len);
-void    calc_operations(t_stack **stack_a, t_stack **stack_b);
+void    calc_operations(t_stack **stack_a, t_stack **stack_b, int len);
 void	last_rot_stack_b(t_stack **stack_a, t_stack **stack_b);
 
 //sort_small.c
@@ -61,12 +66,8 @@ void	rot_a(t_stack **stack, int nbr_push, int rot_flag);
 void	rot_b(t_stack **stack, int nbr_push, int rot_flag);
 void    rot_both(t_stack **stack_a, t_stack **stack_b, int nbr_push);
 
-//check_sort.c
-int check_sort(t_stack *stack);
-void    push_all_stack_a(t_stack **stack_a, t_stack **stack_b);
-
 //calculations.c
-int calc_moves(t_stack **stack_a, t_stack **stack_b);
+int calc_moves(t_stack **stack_a, t_stack **stack_b, int len);
 int calc_each_nbr(t_stack **stack_a, t_stack **stack_b, int nbr);
 int calc_a(t_stack **stack_a, int nbr, int *rot_flag);
 int calc_b(t_stack **stack_b, int nbr, int *rot_flag);

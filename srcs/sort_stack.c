@@ -23,7 +23,7 @@ void    sort_small(t_stack **stack_a, t_stack **stack_b, int len)
         sort_four_five(stack_a, stack_b, len);
 }
 
-void    calc_operations(t_stack **stack_a, t_stack **stack_b)
+void    calc_operations(t_stack **stack_a, t_stack **stack_b, int len)
 {
     t_stack *dup_a;
     t_stack *dup_b;
@@ -31,7 +31,7 @@ void    calc_operations(t_stack **stack_a, t_stack **stack_b)
 
     dup_a = dup_list(stack_a);
     dup_b = dup_list(stack_b);
-    nbr_push = calc_moves(&dup_a, &dup_b);
+    nbr_push = calc_moves(&dup_a, &dup_b, len);
     sort_big(stack_a, stack_b, nbr_push);
     free_struct(&dup_a);
     free_struct(&dup_b);
@@ -46,14 +46,30 @@ void    last_rot_stack_b(t_stack **stack_a, t_stack **stack_b)
     tmp = *stack_b;
     rot_flag = 0;
     big = get_biggest(stack_b);
-    calc_a(stack_b, big, &rot_flag);
+    calc_a(&tmp, big, &rot_flag);
+    // if (*stack_b)
+    // {
+    //     ft_putstr_fd("\n\n", 1);
+    //     ft_putstr_fd("\n\n", 1);
+    //     printf("stack_b\n");
+    //     while ((*stack_b)->next)
+    //     {
+    //         ft_putnbr_fd((*stack_b)->nbr, 1);
+    //         ft_putchar_fd(10, 1);
+    //         *stack_b = (*stack_b)->next;
+    //     }
+    //     ft_putnbr_fd((*stack_b)->nbr, 1);
+    //     ft_putchar_fd(10, 1);
+    //     ft_putstr_fd("\n\n", 1);
+    //     ft_putstr_fd("\n\n", 1);
+    // }
     while (tmp->nbr != big)
     {
+        //printf("nbr - %d | big - %d \n", tmp->nbr, big);
         if (rot_flag)
-            ft_rb(stack_b, 1);
+            ft_rb(&tmp, 1);
         else
-            ft_rrb(stack_b, 1);
-        tmp = tmp->next;
+            ft_rrb(&tmp, 1);
     }
     push_all_stack_a(stack_a, stack_b);
 }
@@ -63,8 +79,10 @@ void    sort_stack(t_stack **stack_a)
     t_stack *tmp;
     t_stack *stack_b;
     int len;
+    int rot_flag;
 
     len = 0;
+    rot_flag = 0;
     tmp = *stack_a;
     stack_b = NULL;
     while (tmp)
@@ -79,22 +97,39 @@ void    sort_stack(t_stack **stack_a)
         ft_pb(stack_a, &stack_b, 1);
         ft_pb(stack_a, &stack_b, 1);
         while ((*stack_a)->next)
-            calc_operations(stack_a, &stack_b);
+            calc_operations(stack_a, &stack_b, len);
+        calc_b(&stack_b, (*stack_a)->nbr, &rot_flag);
+        rot_b(&stack_b, (*stack_a)->nbr, rot_flag);
         ft_pb(stack_a, &stack_b, 1);
+        // if (stack_b)
+        // {
+        //     printf("stack_b\n");
+        //     while (stack_b->next)
+        //     {
+        //         ft_putnbr_fd(stack_b->nbr, 1);
+        //         ft_putchar_fd(10, 1);
+        //         stack_b = stack_b->next;
+        //     }
+        //     ft_putnbr_fd(stack_b->nbr, 1);
+        //     ft_putchar_fd(10, 1);
+        //     ft_putstr_fd("\n\n", 1);
+        // }
+        last_rot_stack_b(stack_a, &stack_b);
     }
-    last_rot_stack_b(stack_a, &stack_b);
     //print test stack_b
-    if (stack_b)
-    {
-        while (stack_b->next)
-        {
-            ft_putnbr_fd(stack_b->nbr, 1);
-            ft_putchar_fd(10, 1);
-            stack_b = stack_b->next;
-        }
-        ft_putnbr_fd(stack_b->nbr, 1);
-        ft_putchar_fd(10, 1);
-        ft_putstr_fd("\n\n", 1);
-    }
+    // if (stack_b)
+    // {
+    //         printf("stack_b\n");
+    //     while (stack_b->next)
+    //     {
+    //         ft_putnbr_fd(stack_b->nbr, 1);
+    //         ft_putchar_fd(10, 1);
+    //         stack_b = stack_b->next;
+    //     }
+    //     ft_putnbr_fd(stack_b->nbr, 1);
+    //     ft_putchar_fd(10, 1);
+    //     ft_putstr_fd("\n\n", 1);
+    // }
+    free_struct(&tmp);
     free_struct(&stack_b);
 }

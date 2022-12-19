@@ -108,6 +108,7 @@ void    sort_big(t_stack **stack_a, t_stack **stack_b, int nbr_push)
     rot_flag_b = 0;
     rotate_a = calc_a(stack_a, nbr_push, &rot_flag_a);
     rotate_b = calc_b(stack_b, nbr_push, &rot_flag_b);
+    //printf("nbr - %d\n", nbr_push);
     if (rotate_a == 0 && rotate_b == 0)
         ft_pb(stack_a, stack_b, 1);
     else if (rotate_a != 0 && rotate_b == 0)
@@ -125,6 +126,5 @@ void    sort_big(t_stack **stack_a, t_stack **stack_b, int nbr_push)
         }
     }
     //printf("nr_push - %d\n", nbr_push);
-    ft_pb(stack_a, stack_b, 1);
     //printf("r_a - %d | r_b - %d - nbr - %d | r_f_a - %d | r_f_b - %d\n", rotate_a, rotate_b, nbr_push, rot_flag_a, rot_flag_b);
 }

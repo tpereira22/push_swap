@@ -51,10 +51,12 @@ int	main(int ac, char **av)
         //checkar if sorted antes de ir para sort
         if (!check_sort(stack_a))
             sort_stack(&stack_a);
-
-        // print_test stack_a
+        free_struct(&stack_a);
+        //print_test stack_a
         // if (stack_a)
         // {
+        //     ft_putchar_fd(10, 1);
+        //     printf("stack_a\n");
         //     while (stack_a->next)
         //     {
         //         ft_putnbr_fd(stack_a->nbr, 1);
@@ -64,6 +66,5 @@ int	main(int ac, char **av)
         //     ft_putnbr_fd(stack_a->nbr, 1);
         //     ft_putchar_fd(10, 1);
         // }
-        free_struct(&stack_a);
     }
 }
