@@ -13,47 +13,55 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
+int get_total_len(t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *tmp1;
+    t_stack *tmp2;
+    int len;
+
+    len = 0;
+    tmp1 = *stack_a;
+    tmp2 = *stack_b;
+    while (tmp1)
+    {
+        len++;
+        tmp1 = tmp1->next;
+    }
+    while (tmp2)
+    {
+        len++;
+        tmp2 = tmp2->next;
+    }
+    return (len);
+}
+
 int cut_calc(t_stack **stack_a, t_stack **stack_b, t_stack **tmp, int len)
 {
-    int i;
+    int nbr_push;
     int moves;
     int best_moves;
-    int nbr_push;
+    int i;
 
+    i = 0;
     best_moves = 0;
     moves = 0;
     nbr_push = 0;
-    i = len - 50;
-    if (len > 100)
+    while (*tmp)
     {
-        while (*tmp)
+        if ((i <= (get_total_len(stack_a, stack_b) - len)) || (i >= (get_total_len(stack_a, stack_b) - (get_total_len(stack_a, stack_b) - len))) || len <= 100)
         {
-            if (i > len)
-                return (nbr_push);
             moves = calc_each_nbr(stack_a, stack_b, (*tmp)->nbr);
-            if (best_moves > moves || nbr_push == 0)
+            if (best_moves > moves || i == 0)
             {
                 best_moves = moves;
                 nbr_push = (*tmp)->nbr;
             }
-            *tmp = (*tmp)->next;
-            i++;
-        }
-    } 
-    else
-    {
-        while (*tmp)
-        {
-            moves = calc_each_nbr(stack_a, stack_b, (*tmp)->nbr);
-            if (best_moves > moves || nbr_push == 0)
-            {
-                best_moves = moves;
-                nbr_push = (*tmp)->nbr;
             }
-            *tmp = (*tmp)->next;
-        }
+        *tmp = (*tmp)->next;
+        i++;
     }
-    return (nbr_push);
+    free_struct(tmp);
+    return(nbr_push);
 }
 
 void    push_all_stack_a(t_stack **stack_a, t_stack **stack_b)

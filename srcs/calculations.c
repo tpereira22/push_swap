@@ -84,12 +84,22 @@ int calc_each_nbr(t_stack **stack_a, t_stack **stack_b, int nbr)
     int moves_a;
     int moves_b;
     int total_moves;
-    int n;
+    int flag;
 
-    n = 0;
-    moves_a = calc_a(stack_a, nbr, &n);
-    moves_b = calc_b(stack_b, nbr, &n);
+    flag = 0;
+    moves_a = calc_a(stack_a, nbr, &flag);
+    moves_b = calc_b(stack_b, nbr, &flag);
     total_moves = moves_a + moves_b;
+    moves_b = flag;
+    moves_a = calc_a(stack_a, nbr, &flag);
+    if (moves_b == flag)
+    {
+        moves_b = calc_b(stack_b, nbr, &flag);
+        if (moves_a > moves_b)
+            total_moves = moves_a;
+        else
+            total_moves = moves_b; 
+    }
     return (total_moves);
 }
 
@@ -98,8 +108,9 @@ int calc_moves(t_stack **stack_a, t_stack **stack_b, int len)
     t_stack *tmp;
     int nbr_push;
 
-    tmp = dup_list(stack_a);
+    //tmp = dup_list(stack_a);
+    tmp = *stack_a;
     nbr_push = cut_calc(stack_a, stack_b, &tmp, len);
-    free_struct(&tmp);
+    //free_struct(&tmp);
     return (nbr_push);
 }

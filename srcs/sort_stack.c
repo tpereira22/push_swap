@@ -32,9 +32,9 @@ void    calc_operations(t_stack **stack_a, t_stack **stack_b, int len)
     dup_a = dup_list(stack_a);
     dup_b = dup_list(stack_b);
     nbr_push = calc_moves(&dup_a, &dup_b, len);
-    sort_big(stack_a, stack_b, nbr_push);
     free_struct(&dup_a);
     free_struct(&dup_b);
+    sort_big(stack_a, stack_b, nbr_push);
 }
 
 void    last_rot_stack_b(t_stack **stack_a, t_stack **stack_b)
@@ -47,25 +47,8 @@ void    last_rot_stack_b(t_stack **stack_a, t_stack **stack_b)
     rot_flag = 0;
     big = get_biggest(stack_b);
     calc_a(&tmp, big, &rot_flag);
-    // if (*stack_b)
-    // {
-    //     ft_putstr_fd("\n\n", 1);
-    //     ft_putstr_fd("\n\n", 1);
-    //     printf("stack_b\n");
-    //     while ((*stack_b)->next)
-    //     {
-    //         ft_putnbr_fd((*stack_b)->nbr, 1);
-    //         ft_putchar_fd(10, 1);
-    //         *stack_b = (*stack_b)->next;
-    //     }
-    //     ft_putnbr_fd((*stack_b)->nbr, 1);
-    //     ft_putchar_fd(10, 1);
-    //     ft_putstr_fd("\n\n", 1);
-    //     ft_putstr_fd("\n\n", 1);
-    // }
     while (tmp->nbr != big)
     {
-        //printf("nbr - %d | big - %d \n", tmp->nbr, big);
         if (rot_flag)
             ft_rb(&tmp, 1);
         else
@@ -79,10 +62,8 @@ void    sort_stack(t_stack **stack_a)
     t_stack *tmp;
     t_stack *stack_b;
     int len;
-    int rot_flag;
 
     len = 0;
-    rot_flag = 0;
     tmp = *stack_a;
     stack_b = NULL;
     while (tmp)
@@ -96,30 +77,36 @@ void    sort_stack(t_stack **stack_a)
     {
         ft_pb(stack_a, &stack_b, 1);
         ft_pb(stack_a, &stack_b, 1);
-        while ((*stack_a)->next)
-            calc_operations(stack_a, &stack_b, len);
-        calc_b(&stack_b, (*stack_a)->nbr, &rot_flag);
-        rot_b(&stack_b, (*stack_a)->nbr, rot_flag);
-        ft_pb(stack_a, &stack_b, 1);
-        // if (stack_b)
+        while ((*stack_a)->next && get_stack_len(stack_a) > 3)
+        {
+            calc_operations(stack_a, &stack_b, (len - 2));
+            len--;
+        }
+        sort_three(stack_a);
+        back_to_a(stack_a, &stack_b);
+        // calc_b(&stack_b, (*stack_a)->nbr, &rot_flag);
+        // rot_b(&stack_b, (*stack_a)->nbr, rot_flag);
+        // ft_pb(stack_a, &stack_b, 1);
+        // if (*stack_a)
         // {
-        //     printf("stack_b\n");
-        //     while (stack_b->next)
-        //     {
-        //         ft_putnbr_fd(stack_b->nbr, 1);
-        //         ft_putchar_fd(10, 1);
-        //         stack_b = stack_b->next;
-        //     }
-        //     ft_putnbr_fd(stack_b->nbr, 1);
         //     ft_putchar_fd(10, 1);
-        //     ft_putstr_fd("\n\n", 1);
+        //     printf("stack_a\n");
+        //     while ((*stack_a)->next)
+        //     {
+        //         ft_putnbr_fd((*stack_a)->nbr, 1);
+        //         ft_putchar_fd(10, 1);
+        //         *stack_a = (*stack_a)->next;
+        //     }
+        //     ft_putnbr_fd((*stack_a)->nbr, 1);
+        //     ft_putchar_fd(10, 1);
         // }
-        last_rot_stack_b(stack_a, &stack_b);
+        // last_rot_stack_b(stack_a, &stack_b);
     }
     //print test stack_b
     // if (stack_b)
     // {
-    //         printf("stack_b\n");
+    //     ft_putstr_fd("\n\n", 1);
+    //     printf("stack_b\n");
     //     while (stack_b->next)
     //     {
     //         ft_putnbr_fd(stack_b->nbr, 1);

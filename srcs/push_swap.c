@@ -13,6 +13,23 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
+int get_stack_len(t_stack **stack)
+{
+    t_stack *tmp;
+    int len;
+
+    if (!*stack)
+        return (0);
+    len = 0;
+    tmp = *stack;
+    while (tmp)
+    {
+        len++;
+        tmp = tmp->next;
+    }
+    return (len);
+}
+
 int check_dup_num(t_stack *stack)
 {
     t_stack *tmp;
@@ -52,19 +69,5 @@ int	main(int ac, char **av)
         if (!check_sort(stack_a))
             sort_stack(&stack_a);
         free_struct(&stack_a);
-        //print_test stack_a
-        // if (stack_a)
-        // {
-        //     ft_putchar_fd(10, 1);
-        //     printf("stack_a\n");
-        //     while (stack_a->next)
-        //     {
-        //         ft_putnbr_fd(stack_a->nbr, 1);
-        //         ft_putchar_fd(10, 1);
-        //         stack_a = stack_a->next;
-        //     }
-        //     ft_putnbr_fd(stack_a->nbr, 1);
-        //     ft_putchar_fd(10, 1);
-        // }
     }
 }

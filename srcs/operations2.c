@@ -108,7 +108,7 @@ void    ft_pa(t_stack **stack_a, t_stack **stack_b)
         (*stack_b)->next = *stack_a;
         *stack_a = *stack_b;
         *stack_b = NULL;
-        ft_putstr_fd("pb\n", 1);
+        ft_putstr_fd("pa\n", 1);
     }
     else
     {
