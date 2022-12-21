@@ -13,7 +13,7 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void    ft_sa(t_stack **stack)
+void	ft_sa(t_stack **stack)
 {
 	t_stack	*tmp;
 	int	swap;

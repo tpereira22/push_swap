@@ -13,9 +13,9 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void    ft_rrr(t_stack **stack_a, t_stack **stack_b)
+void	ft_rrr(t_stack **stack_a, t_stack **stack_b)
 {
-    ft_rra(stack_a, 0);
-    ft_rrb(stack_b, 0);
-    ft_putstr_fd("rrr\n", 1);
+	ft_rra(stack_a, 0);
+	ft_rrb(stack_b, 0);
+	ft_putstr_fd("rrr\n", 1);
 }

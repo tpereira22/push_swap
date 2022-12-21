@@ -13,22 +13,22 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void    free_struct(t_stack **stack)
+void	free_struct(t_stack **stack)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    if(!stack)
-        return ;
-    while (*stack)
-    {
-        tmp = (*stack)->next;
-        (*stack)->nbr = 0;
-        free(*stack);
-        *stack = tmp;
-    }
+	if(!stack)
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		(*stack)->nbr = 0;
+		free(*stack);
+		*stack = tmp;
+	}
 }
 
-t_stack *lst_last(t_stack *stack)
+t_stack	*lst_last(t_stack *stack)
 {
 	while (stack)
 	{
@@ -39,25 +39,24 @@ t_stack *lst_last(t_stack *stack)
 	return (stack);
 }
 
-void    add_back(t_stack **stack, t_stack *new)
+void	add_back(t_stack **stack, t_stack *new)
 {
-    if (!new)
-        return ;
-    if (!*stack)
-        *stack = new;
-    else
-        (lst_last(*stack))->next = new;
+	if (!new)
+		return ;
+	if (!*stack)
+		*stack = new;
+	else
+		(lst_last(*stack))->next = new;
 }
 
-t_stack *new_entry(int content)
+t_stack	*new_entry(int content)
 {
-    t_stack *new;
+	t_stack	*new;
 
-    new = malloc(sizeof(t_stack));
-    if (!new)
-        ft_putstr_fd("Error\n", 1);
-    new->nbr = content;
-    new->next = NULL;
-    return (new);
-
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		ft_putstr_fd("Error\n", 1);
+	new->nbr = content;
+	new->next = NULL;
+	return (new);
 }
