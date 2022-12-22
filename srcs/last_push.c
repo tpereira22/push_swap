@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:47 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:04:48 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:33:23 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ void	back_to_a(t_stack **stack_a, t_stack **stack_b)
 	}
 	ft_pa(stack_a, stack_b);
 	min_to_top(stack_a);
+}
+
+int	calc_util(t_stack **tmp, int nbr_to_find)
+{
+	int	tmp_moves;
+
+	tmp_moves = 0;
+	while ((*tmp)->nbr != nbr_to_find)
+	{
+		ft_ra(tmp, 0);
+		tmp_moves++;
+	}
+	return (tmp_moves);
 }

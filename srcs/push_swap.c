@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:50:15 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 17:50:20 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:35:47 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	get_stack_len(t_stack **stack)
 {
 	t_stack	*tmp;
-	int	len;
+	int		len;
 
 	if (!*stack)
 		return (0);
@@ -65,7 +65,6 @@ int	main(int ac, char **av)
 			free_struct(&stack_a);
 			exit (1);
 		}
-		//checkar if sorted antes de ir para sort
 		if (!check_sort(stack_a))
 			sort_stack(&stack_a);
 		free_struct(&stack_a);

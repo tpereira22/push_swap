@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:32:30 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 19:32:34 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:26:18 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_struct(t_stack **stack)
 {
 	t_stack	*tmp;
 
-	if(!stack)
+	if (!stack)
 		return ;
 	while (*stack)
 	{
@@ -30,12 +30,10 @@ void	free_struct(t_stack **stack)
 
 t_stack	*lst_last(t_stack *stack)
 {
-	while (stack)
-	{
-		if (!stack->next)
-			return (stack);
-		stack = stack->next;
-	}	
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = (stack)->next;
 	return (stack);
 }
 

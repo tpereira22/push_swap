@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:50:02 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/16 13:50:05 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:25:36 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,7 @@ void	sort_three(t_stack **stack)
 	}
 	if ((*stack)->nbr < mid->nbr && down->nbr < mid->nbr)
 	{
-		if ((*stack)->nbr > down->nbr)
-			ft_rra(stack, 1);
-		if ((*stack)->nbr < down->nbr)
-		{
-			ft_sa(stack);
-			ft_ra(stack, 1);
-		}
+		sort_small_util(stack, &down);
 	}
 }
 
@@ -81,10 +75,10 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 
 	*stack_b = NULL;
-	small = get_smallest(stack_a, &index);
 	i = 2;
 	while (i > 0)
 	{
+		small = get_smallest(stack_a, &index);
 		if (index <= 3)
 		{
 			while ((*stack_a)->nbr != small)
@@ -96,10 +90,9 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 				ft_rra(stack_a, 1);
 		}
 		ft_pb(stack_a, stack_b, 1);
-		small = get_smallest(stack_a, &index);
 		i--;
 	}
 	sort_three(stack_a);
 	ft_pa(stack_a, stack_b);
 	ft_pa(stack_a, stack_b);
-}    
+}

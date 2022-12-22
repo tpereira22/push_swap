@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:47 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:04:48 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:43:54 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_total_len(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
-	int	len;
+	int		len;
 
 	len = 0;
 	tmp1 = *stack_a;
@@ -44,11 +44,12 @@ int	cut_calc(t_stack **stack_a, t_stack **stack_b, t_stack **tmp, int len)
 
 	i = 0;
 	best_moves = 0;
-	moves = 0;
 	nbr_push = 0;
 	while (*tmp)
 	{
-		if ((i <= (get_total_len(stack_a, stack_b) - len)) || (i >= (get_total_len(stack_a, stack_b) - (get_total_len(stack_a, stack_b) - len))) || len <= 100)
+		if ((i <= ((get_total_len(stack_a, stack_b) - len) / 2))
+			|| (i >= (get_total_len(stack_a, stack_b)
+					- (get_total_len(stack_a, stack_b) - len))) || len <= 100)
 		{
 			moves = calc_each_nbr(stack_a, stack_b, (*tmp)->nbr);
 			if (best_moves > moves || i == 0)
@@ -60,8 +61,7 @@ int	cut_calc(t_stack **stack_a, t_stack **stack_b, t_stack **tmp, int len)
 		*tmp = (*tmp)->next;
 		i++;
 	}
-	free_struct(tmp);
-	return(nbr_push);
+	return (nbr_push);
 }
 
 void	push_all_stack_a(t_stack **stack_a, t_stack **stack_b)
@@ -72,7 +72,7 @@ void	push_all_stack_a(t_stack **stack_a, t_stack **stack_b)
 }
 
 int	check_sort(t_stack *stack)
-{  
+{
 	int	tmp;
 
 	tmp = stack->nbr;

@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:40:46 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/16 12:40:49 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:05:18 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_sa(t_stack **stack)
 {
 	t_stack	*tmp;
-	int	swap;
+	int		swap;
 
 	tmp = (*stack)->next;
 	swap = tmp->nbr;
@@ -29,11 +29,11 @@ void	ft_ra(t_stack **stack, int flag)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
-	int	swap;
+	int		swap;
 
 	tmp1 = *stack;
 	tmp2 = (*stack)->next;
-	while(tmp1->next)
+	while (tmp1->next)
 	{
 		swap = tmp2->nbr;
 		tmp2->nbr = tmp1->nbr;
@@ -49,11 +49,11 @@ void	ft_rb(t_stack **stack, int flag)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
-	int	swap;
+	int		swap;
 
 	tmp1 = *stack;
 	tmp2 = (*stack)->next;
-	while(tmp1->next)
+	while (tmp1->next)
 	{
 		swap = tmp2->nbr;
 		tmp2->nbr = tmp1->nbr;

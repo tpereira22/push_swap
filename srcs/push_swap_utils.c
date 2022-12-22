@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 20:04:47 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 20:04:48 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:36:33 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	get_biggest(t_stack **stack)
 {
 	t_stack	*tmp;
-	int	big;
+	int		big;
 
 	tmp = *stack;
 	big = (*stack)->nbr;
@@ -32,9 +32,9 @@ int	get_biggest(t_stack **stack)
 int	get_closest_small(t_stack **stack, int nbr)
 {
 	t_stack	*tmp;
-	int	dif;
-	int	tmp_dif;
-	int	close;
+	int		dif;
+	int		tmp_dif;
+	int		close;
 
 	tmp = *stack;
 	dif = 0;
@@ -58,8 +58,8 @@ int	get_closest_small(t_stack **stack, int nbr)
 int	get_smallest(t_stack **stack, int *index)
 {
 	t_stack	*tmp;
-	int	small;
-	int	pos_i;
+	int		small;
+	int		pos_i;
 
 	tmp = *stack;
 	pos_i = 0;
@@ -91,5 +91,5 @@ t_stack	*dup_list(t_stack **stack)
 		add_back(&dup, new_entry(tmp->nbr));
 		tmp = tmp->next;
 	}
-	return(dup);
+	return (dup);
 }

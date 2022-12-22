@@ -6,7 +6,7 @@
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 18:17:32 by timartin          #+#    #+#             */
-/*   Updated: 2022/12/09 18:17:54 by timartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:45:29 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ int	calc_b(t_stack **stack_b, int nbr, int *rot_flag)
 
 	tmp = dup_list(stack_b);
 	close = get_closest_small(stack_b, nbr);
-	tmp_moves = 0;
-	while (tmp->nbr != close)
-	{
-		ft_ra(&tmp, 0);
-		tmp_moves++;
-	}
+	tmp_moves = calc_util(&tmp, close);
 	free_struct(&tmp);
 	tmp = dup_list(stack_b);
 	*rot_flag = 1;
@@ -50,16 +45,11 @@ int	calc_b(t_stack **stack_b, int nbr, int *rot_flag)
 int	calc_a(t_stack **stack_a, int nbr, int *rot_flag)
 {
 	t_stack	*tmp;
-	int	moves;
-	int	tmp_moves;
-    
+	int		moves;
+	int		tmp_moves;
+
 	tmp = dup_list(stack_a);
-	tmp_moves = 0;
-	while (tmp->nbr != nbr)
-	{
-		ft_ra(&tmp, 0);
-		tmp_moves++;
-	}
+	tmp_moves = calc_util(&tmp, nbr);
 	free_struct(&tmp);
 	tmp = dup_list(stack_a);
 	*rot_flag = 1;
@@ -76,7 +66,7 @@ int	calc_a(t_stack **stack_a, int nbr, int *rot_flag)
 		moves = tmp_moves;
 	}
 	free_struct(&tmp);
-	return(moves);
+	return (moves);
 }
 
 int	calc_each_nbr(t_stack **stack_a, t_stack **stack_b, int nbr)
@@ -98,7 +88,7 @@ int	calc_each_nbr(t_stack **stack_a, t_stack **stack_b, int nbr)
 		if (moves_a > moves_b)
 			total_moves = moves_a;
 		else
-			total_moves = moves_b; 
+			total_moves = moves_b;
 	}
 	return (total_moves);
 }
@@ -108,9 +98,7 @@ int	calc_moves(t_stack **stack_a, t_stack **stack_b, int len)
 	t_stack	*tmp;
 	int		nbr_push;
 
-	//tmp = dup_list(stack_a);
 	tmp = *stack_a;
 	nbr_push = cut_calc(stack_a, stack_b, &tmp, len);
-	//free_struct(&tmp);
 	return (nbr_push);
 }
